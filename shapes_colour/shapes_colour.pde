@@ -3,7 +3,7 @@
 
 PShape s;  // The PShape object
 int fudge_factor = 4;
-int interations = 2;
+int iterations = 3;
 int alpha = 32;
 boolean filled = false;
 
@@ -17,19 +17,14 @@ void setup() {
 
   strokeWeight(1);
 
-  for (int z = 0; z < interations; z++){
+  for (int z = 0; z < iterations; z++){
   for (int y = 0; y < height; y=y+spacing) {
     for (int x = 0; x < width; x=x+spacing) {
 
-      if (z == 0) {
-        fill(192,192,192);
-        stroke(128);
-      } else
-      {
-        stroke(0);
-        strokeWeight(1);
-        fill(255,255,255);
-      }
+      stroke(0);
+      strokeWeight(1);
+      fill(255/(iterations-z),255/(iterations-z),255/(iterations-z));
+      
       double selector = 14 * Math.random();
       if ( selector < 1) {
         shape11(x, y, length);
@@ -76,7 +71,7 @@ void setup() {
     }
   }
   }
-  save("Example/shape_colour3.png");
+  save("Example/shape_colour4.png");
 }
 
 void randomFill(int a){
