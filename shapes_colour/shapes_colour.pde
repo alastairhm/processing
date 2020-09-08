@@ -3,22 +3,33 @@
 
 PShape s;  // The PShape object
 int fudge_factor = 4;
+int interations = 2;
+int alpha = 32;
+boolean filled = false;
 
 
 void setup() {
-  size(2500, 1500);
+  size(1000, 600);
   background(255,255,255);
 
   int spacing = 50;
   float length = spacing * 0.95;
-  
+
   strokeWeight(1);
-  
+
+  for (int z = 0; z < interations; z++){
   for (int y = 0; y < height; y=y+spacing) {
     for (int x = 0; x < width; x=x+spacing) {
 
-      stroke(0);
-      //fill(255,255,255);
+      if (z == 0) {
+        fill(192,192,192);
+        stroke(128);
+      } else
+      {
+        stroke(0);
+        strokeWeight(1);
+        fill(255,255,255);
+      }
       double selector = 14 * Math.random();
       if ( selector < 1) {
         shape11(x, y, length);
@@ -43,7 +54,7 @@ void setup() {
       }
       else if (selector > 7 && selector < 8){
         shape5(x,y,length);
-      }      
+      }
       else if (selector > 8 && selector < 9){
         shape6(x,y,length);
       }
@@ -58,13 +69,14 @@ void setup() {
       }
       else if (selector > 12 && selector < 13){
         shape10(x,y,length);
-      }         
+      }
       else {
         shape1(x,y,length);
       }
     }
   }
-  save("Example/shape_colour.png");
+  }
+  save("Example/shape_colour3.png");
 }
 
 void randomFill(int a){
@@ -77,13 +89,13 @@ float randomFudge() {
 
 
 void shape1(int x, int y, float l){
-  noFill();
   rect(x,y,l,l,l/5);
-  noStroke();
-  randomFill(64);
-  float fudge = randomFudge();
-  rect(x+fudge,y+fudge,l+fudge,l+fudge,l/5);  
-  fill(255,255,255);    
+  if (filled) {
+    noStroke();
+    randomFill(64);
+    float fudge = randomFudge();
+    rect(x+fudge,y+fudge,l+fudge,l+fudge,l/5);
+  }
 }
 
 void shape2(int x, int y, float l){
@@ -99,63 +111,63 @@ void shape4(int x, int y, float l){
 }
 
 void shape5(int x, int y, float l){
-  noFill();
   rect(x,y+l/2,l,l/2,l/5);
-  noStroke();
-  randomFill(64);
-  float fudge = randomFudge();
-  rect(x+fudge,y+l/2+fudge,l+fudge,l/2+fudge,l/5);
-  fill(255,255,255);  
+    if (filled) {
+      noStroke();
+      randomFill(alpha);
+      float fudge = randomFudge();
+      rect(x+fudge,y+l/2+fudge,l+fudge,l/2+fudge,l/5);
+    }
 }
 
 void shape6(int x, int y, float l){
-  noFill();
   rect(x,y,l/2,l/2,l/5);
-  noStroke();
-  randomFill(64);
-  float fudge = randomFudge();
-  rect(x+fudge,y+fudge,l/2+fudge,l/2+fudge,l/5);
-  fill(255,255,255);  
+  if (filled) {
+    noStroke();
+    randomFill(alpha);
+    float fudge = randomFudge();
+    rect(x+fudge,y+fudge,l/2+fudge,l/2+fudge,l/5);
+  }
 }
 
 void shape7(int x, int y, float l){
-  noFill();
   rect(x+l/2,y,l/2,l/2,l/5);
-  noStroke();
-  randomFill(64);
-  float fudge = randomFudge();
-  rect(x+l/2+fudge,y+fudge,l/2+fudge,l/2+fudge,l/5);
-  fill(255,255,255);  
+  if (filled) {
+    noStroke();
+    randomFill(alpha);
+    float fudge = randomFudge();
+    rect(x+l/2+fudge,y+fudge,l/2+fudge,l/2+fudge,l/5);
+  }
 }
 
 void shape8(int x, int y, float l){
-  noFill();
   rect(x,y+l/2,l/2,l/2,l/5);
-  noStroke();
-  randomFill(64);
-  float fudge = randomFudge();
-  rect(x+fudge,y+l/2+fudge,l/2+fudge,l/2+fudge,l/5);  
-  fill(255,255,255);   
+  if (filled) {
+    noStroke();
+    randomFill(alpha);
+    float fudge = randomFudge();
+    rect(x+fudge,y+l/2+fudge,l/2+fudge,l/2+fudge,l/5);
+  }
 }
 
 void shape9(int x, int y, float l){
-  noFill();
   rect(x+l/2,y+l/2,l/2,l/2,l/5);
-  noStroke();
-  randomFill(64);
-  float fudge = randomFudge();
-  rect(x+l/2+fudge,y+l/2+fudge,l/2+fudge,l/2+fudge,l/5);  
-  fill(255,255,255);  
+  if (filled) {
+    noStroke();
+    randomFill(alpha);
+    float fudge = randomFudge();
+    rect(x+l/2+fudge,y+l/2+fudge,l/2+fudge,l/2+fudge,l/5);
+  }
 }
 
 void shape10(int x, int y, float l){
-  noFill();
   rect(x+l/4,y+l/4,l/2,l/2,l/5);
-  noStroke();
-  randomFill(128);
-  float fudge = randomFudge();
-  rect(x+l/4+fudge,y+l/4+fudge,l/2+fudge,l/2+fudge,l/5);
-  fill(255,255,255);
+  if (filled) {
+    noStroke();
+    randomFill(alpha);
+    float fudge = randomFudge();
+    rect(x+l/4+fudge,y+l/4+fudge,l/2+fudge,l/2+fudge,l/5);
+  }
 }
 
 void shape11(int x, int y, float l) {
