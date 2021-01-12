@@ -3,9 +3,9 @@
 
 PShape s;  // The PShape object
 int fudge_factor = 4;
-int iterations = 3;
+int iterations = 1;
 int alpha = 32;
-boolean filled = false;
+boolean filled = true;
 
 
 void setup() {
@@ -23,7 +23,12 @@ void setup() {
 
       stroke(0);
       strokeWeight(1);
-      fill(255/(iterations-z),255/(iterations-z),255/(iterations-z));
+      if (filled == false) {
+        fill(255/(iterations-z),255/(iterations-z),255/(iterations-z));
+      }
+      else {
+        noFill();
+      }
       
       double selector = 14 * Math.random();
       if ( selector < 1) {
@@ -71,7 +76,7 @@ void setup() {
     }
   }
   }
-  save("Example/shape_colour4.png");
+  //save("Example/shape_colour4.png");
 }
 
 void randomFill(int a){
@@ -81,7 +86,6 @@ void randomFill(int a){
 float randomFudge() {
   return random(-fudge_factor,fudge_factor);
 }
-
 
 void shape1(int x, int y, float l){
   rect(x,y,l,l,l/5);
@@ -95,6 +99,12 @@ void shape1(int x, int y, float l){
 
 void shape2(int x, int y, float l){
   rect(x,y,l/2,l,l/5);
+  if (filled) {
+    noStroke();
+    randomFill(64);
+    float fudge = randomFudge();
+    rect(x+fudge,y+fudge,l/2+fudge,l+fudge,l/5);
+  }  
 }
 
 void shape3(int x, int y, float l){
@@ -165,19 +175,30 @@ void shape10(int x, int y, float l){
   }
 }
 
+void drawShape(PShape s, int x, int y) {
+  shape(s,x,y);
+  if (filled) {
+    s.setFill(color(255));
+    float fudge = randomFudge();
+    shape(s, x+fudge, y+fudge);
+  }  
+}
+
 void shape11(int x, int y, float l) {
-  s = createShape();
-  s.beginShape();
-  s.strokeJoin(ROUND);
-  s.vertex(0, 0);
-  s.vertex(l/2, 0);
-  s.vertex(l/2, l/2);
-  s.vertex(l, l/2);
-  s.vertex(l,l);
-  s.vertex(0,l);
-  s.vertex(0,0);
-  s.endShape(CLOSE);
-  shape(s, x, y);
+  PShape shape11;
+  shape11 = createShape();
+  shape11.beginShape();
+  shape11.strokeJoin(ROUND);
+  shape11.vertex(0, 0);
+  shape11.vertex(l/2, 0);
+  shape11.vertex(l/2, l/2);
+  shape11.vertex(l, l/2);
+  shape11.vertex(l,l);
+  shape11.vertex(0,l);
+  shape11.vertex(0,0);
+  shape11.endShape(CLOSE);
+  //shape(s, x, y);
+  drawShape(shape11, x, y);
 }
 
 void shape12(int x, int y, float l) {
@@ -191,7 +212,7 @@ void shape12(int x, int y, float l) {
   s.vertex(l,l);
   s.vertex(l,0);
   s.endShape(CLOSE);
-  shape(s, x, y);
+  drawShape(s, x, y);
 }
 
 void shape13(int x, int y, float l) {
@@ -205,7 +226,7 @@ void shape13(int x, int y, float l) {
   s.vertex(0,l/2);
   s.vertex(l/2,l/2);
   s.endShape(CLOSE);
-  shape(s, x, y);
+  drawShape(s, x, y);
 }
 
 void shape14(int x, int y, float l) {
@@ -219,5 +240,5 @@ void shape14(int x, int y, float l) {
   s.vertex(l/2,l);
   s.vertex(0,l);
   s.endShape(CLOSE);
-  shape(s, x, y);
+  drawShape(s, x, y);
 }
