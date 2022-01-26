@@ -3,9 +3,10 @@ var circles = [];
 function setup() {
   createCanvas(1024, 512);
   var protection = 0;
-  var maxp = 10000;
+  var maxp = 20000;
+  var maxc = 3000;
 
-  while (circles.length < 1500 && protection < maxp) {
+  while (circles.length < maxc && protection < maxp) {
     protection++;
     var circle = {
       x: random(width),
