@@ -1,4 +1,4 @@
-size(600, 600)
+size(1200, 600)
 background('#004477')
 noFill()
 stroke('#FFFFFF')
