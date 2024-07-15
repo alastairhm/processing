@@ -4,7 +4,7 @@
 PShape s;  // The PShape object
 int fudge_factor = 4;
 int iterations = 1;
-int alpha = 32;
+int alpha = 64;
 boolean filled = true;
 
 
@@ -91,7 +91,7 @@ void shape1(int x, int y, float l){
   rect(x,y,l,l,l/5);
   if (filled) {
     noStroke();
-    randomFill(64);
+    randomFill(alpha);
     float fudge = randomFudge();
     rect(x+fudge,y+fudge,l+fudge,l+fudge,l/5);
   }
@@ -101,7 +101,7 @@ void shape2(int x, int y, float l){
   rect(x,y,l/2,l,l/5);
   if (filled) {
     noStroke();
-    randomFill(64);
+    randomFill(alpha);
     float fudge = randomFudge();
     rect(x+fudge,y+fudge,l/2+fudge,l+fudge,l/5);
   }  
