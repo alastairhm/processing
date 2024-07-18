@@ -23,7 +23,7 @@ void setup() {
 
       stroke(0);
       strokeWeight(1);
-      if (filled == false) {
+      if (filled) {
         fill(255/(iterations-z),255/(iterations-z),255/(iterations-z));
       }
       else {
